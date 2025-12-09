@@ -1,35 +1,40 @@
-###Projeto de Banco de Dados de Livraria
+# Projeto de Banco de Dados de Livraria
 
 Este projeto consiste na criação de um banco de dados para gerenciamento de uma livraria, contendo livros, clientes e empréstimos registrados.
 Além da modelagem e inserção de dados, foram desenvolvidas diversas consultas SQL para exploração e análise das informações.
 
 ## Lista de Queries
-🔷 Consultas básicas de visualização  
+🔷 Consultas básicas de visualização
+
 Nº	Query	O que faz  
 1	SELECT * FROM books;	Mostra todos os livros cadastrados  
 2	SELECT * FROM customers;	Lista todos os clientes  
 3	SELECT * FROM loans;	Exibe todos os empréstimos registrados  
 4	SELECT * FROM books WHERE genre = "Fantasia";	Filtra livros do gênero Fantasia  
 5	SELECT * FROM customers WHERE telephone IS NOT NULL;	Clientes que possuem telefone registrado  
-🔷 Filtros e comparações  
+🔷 Filtros e comparações
+
 Nº	Query	O que faz  
 6	SELECT * FROM loans WHERE status = "late" OR status = "borrowed";	Lista empréstimos atrasados ou ainda em posse do cliente  
 7	SELECT * FROM books WHERE price > 50;	Livros com valor acima de R$50  
 8	SELECT * FROM loans WHERE loan_date > "2025-05-10";	Empréstimos após determinada data  
 9	SELECT * FROM books WHERE quantity_of_copies_available &lt 5;	Livros com poucas cópias disponíveis  
 10	SELECT * FROM loans WHERE status = "late";	Empréstimos atrasados  
-🔷 Ordenação de dados  
+🔷 Ordenação de dados
+
 Nº	Query	O que faz  
 11	SELECT * FROM books ORDER BY price DESC;	Livros ordenados do mais caro ao mais barato  
 12	SELECT * FROM customers ORDER BY name;	Lista clientes em ordem alfabética  
 13	SELECT * FROM loans ORDER BY loan_previst_devolution_date;	Ordena empréstimos pelo prazo de devolução  
 14	SELECT * FROM books ORDER BY publish_year DESC;	Livros mais recentes primeiro  
-🔷 JOINs — Ligando as Tabelas  
+🔷 JOINs — Ligando as Tabelas
+
 Nº	Query	O que faz  
 15	SELECT books.title, customers.name, loans.loan_date, loans.loan_previst_devolution_date, loans.loan_return_date, loans.status FROM loans JOIN books ON loaned_book = books_id JOIN customers ON customer = customers_id;	Lista empréstimos com nome do cliente e título do livro  
 17	(versão filtrada) WHERE status = "late"	Apenas empréstimos atrasados  
 18	(versão filtrada) WHERE status = "returned"	Apenas devolvidos  
-🔷 Agrupamentos e estatísticas  
+🔷 Agrupamentos e estatísticas
+
 Nº	Query	O que faz  
 19	SELECT genre, COUNT(*) FROM books GROUP BY genre;	Quantidade de livros por gênero  
 20	SELECT customers.name, COUNT(*) AS total_loans FROM loans JOIN customers ON customer = customers_id GROUP BY customer;	Quantidade de empréstimos por cliente  
